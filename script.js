@@ -1,27 +1,19 @@
-const count = document.querySelector('.count');
-const buttons = document.querySelector('.container-footer');
+const button = document.querySelector('.btn');
+const result = document.querySelector('.result');
 
-buttons.addEventListener("click", (e) => {
-    if(e.target.classList.contains("btn-subtract")) {
-        count.innerHTML--;
-        setColor();
-    }
-    if(e.target.classList.contains("btn-add")) {
-        count.innerHTML++;
-        setColor();
-    }
-    if(e.target.classList.contains("btn-reset")) {
-        count.innerHTML = 0;
-        setColor();
-    }
-});
+button.addEventListener("click", isPalindrome);
 
-const setColor = () => {
-    if(count.innerHTML > 0) {
-        count.style.color = '#3094ff';
-    } else if(count.innerHTML < 0) {
-        count.style.color = '#6243ff';
+function isPalindrome() {
+    word = document.querySelector('.input-text').value;
+    word_length = word.length;
+
+    let start = word.substring(0, Math.floor(word_length / 2)).toLowerCase();
+    let end = word.substring(word_length - Math.floor(word_length / 2)).toLowerCase();
+
+    let flip = [...end].reverse().join("");
+    if(start == flip) {
+        result.innerHTML = `${word.toUpperCase()} is a palindrome`;
     } else {
-        count.style.color = '#fff';
+        result.innerHTML = `${word.toUpperCase()} is NOT a palindrome`;
     }
 }
